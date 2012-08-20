@@ -1,14 +1,10 @@
 fs = require('fs')
-{ Server, Db } = require "mongodb"
-server = new Server "localhost", 27017, {auto_reconnect:true}
-db = new Db "jugements", server
-
 links = []
 jugements = []
-years = [2010]
-months = [1..2]
+years = [2011]
+months = [9]
 baseurl = "http://jugements.qc.ca/"
-tribunal = 16
+tribunal = 39
 searchurl ="#{baseurl}index.php?type=listec&recher=#{tribunal}"
 searchurls = []
 documents = []
@@ -44,7 +40,7 @@ casperOpen = (link, month, year) ->
     @echo "Parsing second level #{link}\n"
     doc = @evaluate grabData
     jugement = {}
-    jugement.tribunal = ""
+    jugement.tribunal = "CSST"
     jugement.integral = doc
     jugement.url = link
     jugement.month = month
